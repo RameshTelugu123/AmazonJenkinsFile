@@ -1,74 +1,30 @@
 pipeline {
-
     agent any
 
-    tools {
-        jdk 'JDK21'
-        maven 'Maven'
-    }
-
-    environment {
-        MAVEN_OPTS = '-Xmx1024m'
-    }
-
     stages {
-
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-                git branch: 'main',
-                url: 'https://github.com/RameshTelugu123/AmazonJenkinsFile.git'
+                git branch: 'main', url: 'https://github.com/RameshTelugu123/AmazonJenkinsFile.git'
             }
         }
-
-        stage('Clean Project') {
+        stage('Build') {
             steps {
-                bat 'mvn clean'
+                sh 'mvn clean install'
             }
         }
-
-        stage('Build Project') {
+        stage('Test') {
             steps {
-                bat 'mvn compile'
+                sh 'mvn test'
             }
         }
-
-        stage('Run Selenium BDD Tests') {
+        stage('Publish HTML Report') {
             steps {
-                bat 'mvn test'
+                publishHTML([
+                    reportDir: 'target/site',
+                    reportFiles: 'surefire-report.html',
+                    reportName: 'Test Report'
+                ])
             }
-        }
-
-        stage('Generate Extent Reports') {
-            steps {
-                echo 'Generating Extent Reports...'
-            }
-        }
-    }
-
-    post {
-
-        always {
-
-            publishHTML(target: [
-                allowMissing: false,
-                alwaysLinkToLastBuild: true,
-                keepAll: true,
-                reportDir: 'test-output',
-                reportFiles: 'ExtentReport.html',
-                reportName: 'Extent Test Report'
-            ])
-
-            archiveArtifacts artifacts: 'test-output/**/*.*', fingerprint: true
-
-            junit 'target/surefire-reports/*.xml'
-        }
-
-        success {
-            echo 'Build and Tests Executed Successfully'
-        }
-
-        failure {
-            echo 'Build Failed'
         }
     }
 }
