@@ -1,6 +1,6 @@
 package com.Amazon.PageObjectModel;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 import java.time.Duration;
 import java.util.Set;

@@ -31,18 +31,8 @@
 
   <dependencies>
   
-   <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.7.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-params</artifactId>
-      <version>5.7.1</version>
-      <scope>test</scope>
-    </dependency>
+   
+   
     
     <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
 <dependency>
@@ -63,12 +53,6 @@
     <version>7.31.0</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
-<dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-junit</artifactId>
-    <version>7.31.0</version>
-    <scope>test</scope>
-</dependency>
 <dependency>
     <groupId>org.slf4j</groupId>
     <artifactId>slf4j-log4j12</artifactId>
@@ -97,12 +81,7 @@
     <artifactId>extentreports</artifactId>
     <version>5.1.1</version>
 </dependency>
-<dependency>
-  <groupId>io.cucumber</groupId>
-  <artifactId>cucumber-junit-platform-engine</artifactId>
-  <version>7.31.0</version>
-  <scope>test</scope>
-</dependency>
+
 <!-- Source: https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
 <dependency>
     <groupId>io.cucumber</groupId>
