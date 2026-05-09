@@ -3,6 +3,7 @@
   <groupId>Amazon.in</groupId>
   <artifactId>amazonWebsite</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+ 
   <dependencies>
   
    <dependency>
@@ -60,7 +61,16 @@
     <version>7.11.0</version>
     <scope>test</scope>
 </dependency>
-   
-  
+   <dependency>
+    <groupId>ru.yandex.qatools.ashot</groupId>
+    <artifactId>ashot</artifactId>
+    <version>1.5.4</version>
+</dependency>
+  <!-- Source: https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+<dependency>
+    <groupId>com.aventstack</groupId>
+    <artifactId>extentreports</artifactId>
+    <version>5.1.1</version>
+</dependency>
   </dependencies>
 </project>

@@ -3,10 +3,13 @@ package com.Amazon.Stepdefination;
 import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeSuite;
 
+import com.Amazon.Baseclass.Longscreenshot;
 import com.Amazon.Baseclass.baseclassDriver;
 import com.Amazon.PageObjectModel.AmazonHomePage;
-
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -16,6 +19,10 @@ import io.cucumber.java.en.When;
 public class stepsFile extends baseclassDriver{
 	AmazonHomePage page;
 	WebDriver driver;
+	
+   
+
+   
 
 
 	@Given("launch url")
@@ -34,6 +41,7 @@ public class stepsFile extends baseclassDriver{
 		page.Senddata_Search_Box(productName);
 		page.click_OnSearch_Button();
 		System.out.println("clicked");
+		driver.navigate().refresh();
 	}
 
 
@@ -54,8 +62,9 @@ public class stepsFile extends baseclassDriver{
 	}
 
 	@Then("Verify confirmation message appears: Added to Cart")
-	public void verify_confirmation_message_appears_added_to_cart() {
+	public void verify_confirmation_message_appears_added_to_cart() throws IOException {
 		System.out.println("clicked");
+		Longscreenshot.takeFullScreenshot(driver);
 	}
 
 

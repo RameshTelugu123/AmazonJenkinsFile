@@ -1,0 +1,74 @@
+pipeline {
+
+    agent any
+
+    tools {
+        jdk 'JDK21'
+        maven 'Maven'
+    }
+
+    environment {
+        MAVEN_OPTS = '-Xmx1024m'
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/RameshTelugu123/AmazonJenkinsFile.git'
+            }
+        }
+
+        stage('Clean Project') {
+            steps {
+                bat 'mvn clean'
+            }
+        }
+
+        stage('Build Project') {
+            steps {
+                bat 'mvn compile'
+            }
+        }
+
+        stage('Run Selenium BDD Tests') {
+            steps {
+                bat 'mvn test'
+            }
+        }
+
+        stage('Generate Extent Reports') {
+            steps {
+                echo 'Generating Extent Reports...'
+            }
+        }
+    }
+
+    post {
+
+        always {
+
+            publishHTML(target: [
+                allowMissing: false,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'test-output',
+                reportFiles: 'ExtentReport.html',
+                reportName: 'Extent Test Report'
+            ])
+
+            archiveArtifacts artifacts: 'test-output/**/*.*', fingerprint: true
+
+            junit 'target/surefire-reports/*.xml'
+        }
+
+        success {
+            echo 'Build and Tests Executed Successfully'
+        }
+
+        failure {
+            echo 'Build Failed'
+        }
+    }
+}
