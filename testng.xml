@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="AmazonWebsiteSuite" verbose="1">
+    <test name="CucumberTests">
+        <classes>
+            <!-- Point to your runner class -->
+            <class name="com.Amazon.Baseclass.RunnerClass"/>
+        </classes>
+    </test>
+</suite>
